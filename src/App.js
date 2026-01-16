@@ -16,9 +16,11 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
 
-  useEffect(() => {
-    fetch('http://localhost:3001/api/products')
-      .then(response => {
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
+
+useEffect(() => {
+  fetch(`${API_URL}/api/products`) 
+    .then(response => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
